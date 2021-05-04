@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "d3_homework"
+version = "0.1.0"
+description = ""
+authors = ["azat715 <azat715@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+Django = "^3.1.6"
+ipython = "^7.20.0"
+pylint-django = "^2.4.2"
+Pillow = "^8.1.2"
+django-crispy-forms = "^1.11.1"
+django-allauth = "^0.44.0"
+
+[tool.poetry.dev-dependencies]
+black = "^20.8b1"
+pylint = "^2.6.0"
+isort = "^5.7.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

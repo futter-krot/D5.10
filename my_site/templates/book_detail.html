@@ -1,0 +1,27 @@
+{% extends "./base.html" %}
+
+{% block content %}
+
+<h4>Книга</h4>
+
+<div class="card w-100" style="width: 18rem;">
+    {% if object.cover %}
+        <img src="{{ object.cover.url }}" class="card-img-top rounded mx-auto d-block" alt="Оболжка книги">
+    {% else %}
+        Нет изображения
+    {% endif %}
+    <div class="card-body">
+        <h4 class="card-title">{{ object.title }}</h4>
+        <p class="card-text">{{ object.description }}</p> 
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Автор: {{ author.full_name }}</li>
+        <li class="list-group-item">Издатель: {{ publisher.name }}</li>
+    </ul>
+    <div class="card-body">
+    <a href="" class="card-link">Автор</a>
+    <a href="" class="card-link">Издатель</a>
+  </div>
+</div>
+
+{% endblock %}

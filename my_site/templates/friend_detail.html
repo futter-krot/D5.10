@@ -1,0 +1,24 @@
+{% extends "./base.html" %}
+
+{% block content %}
+
+<h4>{{ object.name }}</h4>
+
+<table class="table table-bordered">
+    <tr>
+        <td scope="col">Название книги</td>
+        <td scope="col">Количество копий</td>
+        <td scope="col">Дата</td>
+    </tr>
+    {% for item in sent_books %}
+    <tr>
+        <td >{{ item.book.title }}</td>
+        <td>{{ item.copy_count_send }}</td>
+        <td>{{ item.date_send }}</td>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+{% endblock %}

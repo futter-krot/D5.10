@@ -1,0 +1,45 @@
+{% extends "./base.html" %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+<form method="post" enctype="multipart/form-data"> 
+	{% csrf_token %}
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<h4>Книга</h4>
+					{{ book|crispy }}
+    		</div>
+			<div class="col">
+				<h4>Автор</h4>
+					<div class="author">
+						 {% crispy author%} 
+					</div>
+				<h4>Издатель</h4>
+					<div class="publisher">
+						{{ publisher|crispy }}
+					</div>
+    		</div>
+		</div>
+		<div class="row">
+			<div class="col">
+			<a href="{% url 'p_library:create_min'%}">Свернуть</a>
+			</div>
+			<div class="col">
+				<div class="d-flex flex-row justify-content-end">
+					<input type="submit" class="btn btn-primary" value="Сохранить"/>
+				</div>
+				
+			</div>
+		</div>
+	</div> 	
+</form>  
+
+{% endblock %}
+
+{% block javascript %}
+{% load static %}
+{% comment %} <script src="{% static 'js/script.js' %}"></script> {% endcomment %}
+{% endblock %}

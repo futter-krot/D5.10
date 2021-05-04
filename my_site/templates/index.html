@@ -1,0 +1,55 @@
+{% extends "./base.html" %}
+
+{% block content %}
+
+Добро пожаловать в {{ title }}. <br>
+Тут собрано {{ books|length }} книг из моей личной коллекции.
+
+<table class="table table-bordered">
+    <tr>
+        <td scope="col">№</td>
+        <td scope="col">Название</td>
+        <td scope="col">ISBN</td>
+        <td scope="col">Описание</td>
+        <td scope="col">Год издания</td>
+        <td scope="col">Автор</td>
+        <td scope="col">Страна</td>
+        <td scope="col">Кол-во копий</td>
+    </tr>
+    {% for book in books %}
+    <tr>
+        <td scope="row">{{ forloop.counter }}</td>
+        <td ><a href="{% url 'p_library:book_detail' book.pk %}">{{ book.title }}</a></td>
+        <td>{{ book.ISBN }}</td>
+        <td>{{ book.description }}</td>
+        <td>{{ book.year_release }}</td>
+        <td>{{ book.author.full_name }}</td>
+        <td>{{ book.author.country }}</td>
+        <td>
+            {{ book.copy_count }}               
+            <form class="form-inline" action="/index/book_increment/" method="post" enctype="multipart/form-data">      
+                    {% csrf_token %}
+                    <input type="hidden" name="id" value="{{book.id}}" />
+                    <button class="btn btn-outline-primary btn-sm" type="submit">+</button>
+            </form>
+            <form class="form-inline" action="/index/book_decrement/" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="hidden" name="id" value="{{book.id}}" />
+                    <button class="btn btn-outline-primary btn-sm" type="submit">-</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<ul>
+    {% for i in loop %}
+        {% if i|divisibleby:"3" %}
+        <li>
+            {{ i }}
+        </li>
+        {% endif %}
+    {% endfor %}
+</ul>
+
+{% endblock %}

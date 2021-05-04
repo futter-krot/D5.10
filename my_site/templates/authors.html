@@ -1,0 +1,14 @@
+{% extends "./base.html" %}
+
+{% block content %}
+
+<h1>Авторы</h1>
+
+<ul>
+    {% for item in object_list %}
+        <li><a href="{% url 'p_library:author_detail' item.pk %}">{{ item.full_name }}</a></li>
+    {% endfor %}
+</ul>
+
+
+{% endblock %}
